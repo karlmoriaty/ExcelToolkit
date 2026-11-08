@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.env
+*.log
+*.xlsx
+demo_output.*
+command_demo.*
+.trae/
