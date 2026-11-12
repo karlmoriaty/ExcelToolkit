@@ -1,115 +1,84 @@
-# 文档与表格处理程序
+# ExcelToolkit
 
-一个功能强大的Excel表格处理工具，提供直观的用户界面和便捷的命令操作。
+A spreadsheet-like desktop editor with a command console. Edit cells directly in a
+Tkinter grid, then apply layout and formatting work with one-line commands instead
+of clicking through menus — useful when you format the same kind of report over and
+over.
 
-## 功能特性
+## Features
 
-- **直观的用户界面**：类似电子表格的图形界面，支持直接编辑单元格
-- **工作表管理**：创建、删除、切换工作表
-- **格式模板系统**：内置多种预设格式模板（表头、数据、数字、标题、高亮等）
-- **命令解析引擎**：通过简单命令快速执行复杂操作
-- **便捷的格式设置**：填充颜色、设置对齐、添加边框等
-- **自动调整列宽**：一键优化表格布局
+- **Spreadsheet grid** — 100 × 50 editable cells with an Excel-style layout.
+- **Worksheet management** — create, switch between, and delete sheets.
+- **Format templates** — reusable styles for headers, data cells, numbers, titles and
+  highlights.
+- **Command console** — apply templates, borders, fills, alignment and column
+  autofit by typing a command.
+- **Excel I/O** — open and save `.xlsx` files via openpyxl.
 
-## 安装依赖
+## Install
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 运行程序
+## Run
 
 ```bash
 python main.py
 ```
 
-## 使用说明
+or double-click `run_main.bat`. `card_view.py` and `integrated_app.py` are
+alternative entry points with their own `.bat` launchers.
 
-### 界面布局
+## Layout
 
-1. **左侧面板**：工作表列表和格式模板列表
-2. **中间区域**：表格编辑区域（50行×26列）
-3. **右侧面板**：命令控制台
+- **Left panel** — worksheet list and format templates.
+- **Center** — the editable grid.
+- **Right panel** — command console.
 
-### 常用命令
+## Commands
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `help` | 显示命令帮助 | `help` |
-| `template` | 查看所有可用模板 | `template` |
-| `table <范围> <模板名>` | 应用表格模板 | `table A1:E10 header` |
-| `border <范围>` | 添加边框 | `border A1:E10` |
-| `fill <范围> <颜色>` | 填充背景色 | `fill A1:A5 FFFF00` |
-| `align <范围> <left/center/right>` | 设置对齐方式 | `align A1:E10 center` |
-| `autofit` | 自动调整列宽 | `autofit` |
-| `select <工作表名>` | 选择工作表 | `select Sheet1` |
-| `create <工作表名>` | 创建新工作表 | `create 数据` |
-| `set <单元格> <值>` | 设置单元格值 | `set A1 姓名` |
+| Command | Description | Example |
+|---------|-------------|---------|
+| `help` | Show command help | `help` |
+| `template` | List available templates | `template` |
+| `table <range> <template>` | Apply a table template | `table A1:E10 header` |
+| `border <range>` | Add borders | `border A1:E10` |
+| `fill <range> <color>` | Fill background color (hex) | `fill A1:A5 FFFF00` |
+| `align <range> <left/center/right>` | Set cell alignment | `align A1:E10 center` |
+| `autofit` | Autofit column widths | `autofit` |
+| `select <sheet>` | Switch worksheet | `select Sheet1` |
+| `create <sheet>` | Create a worksheet | `create Data` |
+| `set <cell> <value>` | Set a cell value | `set A1 Name` |
 
-### 内置模板
+### Built-in templates
 
-- **header**：表头样式（加粗、灰色背景、居中、边框）
-- **data**：数据单元格样式（左对齐、边框）
-- **number**：数字单元格样式（右对齐、边框）
-- **title**：标题样式（大字体、加粗、居中）
-- **highlight**：高亮样式（黄色背景、加粗）
+- `header` — bold, grey background, centered, bordered
+- `data` — left aligned, bordered
+- `number` — right aligned, bordered
+- `title` — large bold centered text
+- `highlight` — yellow background, bold
 
-### 快捷键
+### Shortcuts
 
-- `Ctrl+N`：新建文件
-- `Ctrl+O`：打开文件
-- `Ctrl+S`：保存文件
+`Ctrl+N` new file, `Ctrl+O` open, `Ctrl+S` save.
 
-## 项目结构
+## Example session
 
-```
-ExcelToolkit/
-├── main.py              # 主程序入口和GUI界面
-├── spreadsheet_editor.py # 表格编辑核心模块
-├── format_templates.py  # 格式模板管理系统
-├── command_parser.py    # 命令解析引擎
-├── config.py            # 配置文件
-├── card_view.py         # 卡片视图入口
-├── integrated_app.py    # 集成版入口
-├── requirements.txt     # 依赖包列表
-├── run_main.bat         # 启动主程序
-├── run_card_view.bat    # 启动卡片视图
-├── run_integrated.bat   # 启动集成版
-├── test_demo.py         # 测试演示脚本
-└── README.md            # 说明文档
-```
+1. Type headers into A1:E1 (Name, Age, Gender, Role, City).
+2. Run `table A1:E1 header`.
+3. Fill A2:E10 with data and run `table A2:E10 data`.
+4. Run `autofit`, then save.
 
-## 技术栈
+## Stack
 
-- **Python 3.x**
-- **openpyxl**：Excel文件处理
-- **tkinter**：图形用户界面
+Python 3, Tkinter, openpyxl.
 
-## 启动方式
+## Notes
 
-### 方式一：批处理脚本（推荐）
-双击项目根目录下对应的 `.bat` 文件：
-- `run_main.bat` — 启动主程序
-- `run_card_view.bat` — 启动卡片视图
-- `run_integrated.bat` — 启动集成版
+- The UI is in Chinese.
+- The grid is a fixed 100 × 50 area.
 
-### 方式二：命令行
-```bash
-python main.py
-python card_view.py
-python integrated_app.py
-```
+## License
 
-## 示例使用流程
-
-1. 启动程序：双击 `run_main.bat` 或执行 `python main.py`
-2. 在A1-E1单元格输入表头（姓名、年龄、性别、职业、城市）
-3. 在命令控制台输入：`table A1:E1 header`
-4. 在A2-E10输入数据
-5. 输入：`table A2:E10 data`
-6. 输入：`autofit`
-7. 保存文件
-
-## 许可证
-
-MIT License
+MIT
